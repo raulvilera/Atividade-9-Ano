@@ -71,7 +71,7 @@ function Field({ label, value, icon }: { label: string; value: string; icon?: Re
 
 async function submitToGoogleSheets(studentData: any, answers: any, essays: any) {
   try {
-    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/d/YOUR_SCRIPT_ID/usercallback";
+    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/prof.educacao.sp.gov.br/s/AKfycbz0LfSZr8b_N8zQOX6M0VDZ-_ubhDV_SYkZULWs6zNASpCN8p65ufd3PlsQgQ04wfyy/exec";
     
     const payload = {
       student: studentData,
