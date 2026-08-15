@@ -206,6 +206,8 @@ function vitePluginStorageProxy(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
 export default defineConfig({
+  // O Pages publica o projeto em /Atividade-9-Ano/, não na raiz do domínio.
+  base: process.env.GITHUB_ACTIONS ? "/Atividade-9-Ano/" : "/",
   plugins,
   resolve: {
     alias: {
