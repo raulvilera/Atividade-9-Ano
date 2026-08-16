@@ -1,103 +1,67 @@
-# Direção visual — Evolução e Biodiversidade
+# Direção visual da atividade
 
-## Três abordagens consideradas
+## Abordagens consideradas
 
-### Abordagem 1
+### Abordagem 1 — Caderno de Campo Editorial
+**Very Brief Intro:** Uma interface clara, editorial e investigativa, inspirada em cadernos de campo, atlas científicos e fichas de observação. A experiência combina papel, verde-musgo e anotações visuais para aproximar o estudante do trabalho de um cientista.
+**Probability:** 0.07
 
-**Theme Name:** Caderno de Campo Editorial
+### Abordagem 2 — Laboratório Mineral
+**Very Brief Intro:** Uma linguagem de laboratório contemporâneo, com superfícies claras, azul-petróleo, detalhes âmbar e blocos de informação precisos. O visual transmite método, evidência e descoberta sem parecer uma prova tradicional.
+**Probability:** 0.04
 
-**Very Brief Intro:** Uma experiência de Ciências com linguagem de caderno de campo, combinando papel mineral, diagramas precisos e apontamentos de observação. A interface deve fazer o estudante sentir que está a investigar evidências, não apenas a responder a um questionário.
+### Abordagem 3 — Arquivo da Biodiversidade
+**Very Brief Intro:** Uma direção inspirada em pranchas de história natural, museus e arquivos de biodiversidade, com composição assimétrica, recortes orgânicos e contraste entre marfim, terracota e verde profundo. A atividade se torna uma pequena expedição visual pela evolução.
+**Probability:** 0.08
 
-**Probability:** 0.073
-
-### Abordagem 2
-
-**Theme Name:** Laboratório de Dados Vivos
-
-**Very Brief Intro:** Um laboratório digital luminoso, com cartões modulares, gráficos e pistas visuais que se reorganizam conforme o estudante formula hipóteses. A emoção dominante é a descoberta orientada por dados.
-
-**Probability:** 0.041
-
-### Abordagem 3
-
-**Theme Name:** Atlas de Linhagens
-
-**Very Brief Intro:** Um atlas narrativo que usa mapas, linhas do tempo e trilhos de parentesco para transformar a sequência de aulas numa expedição pela história da vida. A sensação é de navegação e construção de uma explicação.
-
-**Probability:** 0.086
-
-## Abordagem escolhida: Caderno de Campo Editorial
+## Abordagem escolhida — Arquivo da Biodiversidade
 
 ### Design Movement
-
-Editorial científico contemporâneo com referências ao design de livros de campo, ao modernismo suíço e a materiais de laboratório: composição assimétrica, regras finas, etiquetas de espécime, áreas de anotação e dados com escala explícita.
+Natural history editorial, com referências a pranchas de museu, atlas de campo e design modernista de arquivos científicos.
 
 ### Core Principles
-
-1. **Evidência antes da resposta:** cada questão começa com um vestígio — gráfico, cladograma, mapa, tabela, linha do tempo, recorte de vídeo ou infográfico — e só depois pede interpretação.
-2. **Clareza investigativa:** o estudante deve distinguir observação, hipótese, evidência e conclusão através de microcopy e estados visuais, sem excesso de ornamento.
-3. **Ritmo de caderno:** alternar blocos densos e espaços de respiração, usando uma régua vertical de aulas e marcadores que mostrem o progresso.
-4. **Precisão acessível:** gráficos e simuladores devem ser visualmente envolventes, mas numericamente coerentes, legíveis e explicados em linguagem adequada ao 9.º ano.
+1. Cada questão deve parecer uma evidência ou uma observação, não apenas um bloco de prova.
+2. A composição deve alternar áreas de leitura e imagens, evitando uma página centralizada e repetitiva.
+3. A paleta deve criar sensação de investigação: marfim para o suporte, verde profundo para a vida, terracota para hipóteses e azul-petróleo para evidências.
+4. A interface precisa ser acessível, silenciosa e funcional, mantendo detalhes gráficos apenas quando ajudam a orientar o estudante.
 
 ### Color Philosophy
-
-O fundo marfim sugere papel de observação e reduz o cansaço visual. O verde profundo remete à biodiversidade e funciona como cor de confiança. O azul-petróleo indica evidência e leitura científica. O amarelo-ocre destaca hipóteses e pistas, enquanto o coral reservado sinaliza erro ou revisão sem transformar a avaliação num ambiente punitivo. A paleta deve parecer natural, táctil e editorial; não usar gradientes roxos ou estética neon.
+O marfim reduz a dureza do branco puro e remete a papel de arquivo. O verde profundo representa biodiversidade e continuidade da vida. O terracota marca descobertas, fósseis e pontos de atenção. O azul-petróleo é reservado para dados, identificação e ações, comunicando rigor sem a frieza de um azul escolar genérico.
 
 ### Layout Paradigm
-
-Uma coluna lateral estreita funciona como **régua de investigação**: vídeo, aulas 1–4, síntese e envio. O conteúdo principal alterna uma faixa introdutória ampla com módulos de investigação de largura variável. Questões de gráfico e tabela ocupam mais espaço horizontal; questões de interpretação e simulador usam cartões em duas colunas. O resultado evita uma grelha centralizada uniforme e dá aos dados a largura de que precisam.
+Uma página longa em fluxo editorial, com cabeçalho em duas colunas, barra lateral de progresso e cartões de questões em composição alternada. As imagens entram como pranchas de evidência entre o enunciado e as alternativas, enquanto as dissertativas possuem área de resposta imediatamente após o enunciado.
 
 ### Signature Elements
-
-1. **Marcador de espécime:** pequenas etiquetas em caixa alta com número da aula, habilidade e tipo de evidência.
-2. **Régua evolutiva:** linha vertical com pontos de progresso que se transformam em folhas estilizadas quando uma aula é concluída.
-3. **Carimbo de análise:** feedback que aparece como uma anotação editorial curta — “evidência consistente”, “rever hipótese” — em vez de apenas “certo/errado”.
+1. Pequenos marcadores de espécime com numeração e linha de coleta.
+2. Molduras assimétricas com legenda curta para cada imagem.
+3. Divisores inspirados em linhas de catalogação e silhuetas fósseis discretas.
 
 ### Interaction Philosophy
-
-As interações devem parecer gestos de investigação: selecionar uma hipótese, arrastar uma espécie para um ramo, ajustar uma pressão seletiva, revelar um dado ou comparar dois modelos. O sistema não deve interromper o raciocínio com feedback imediato excessivo; após cada bloco, revela a leitura orientadora e permite voltar à evidência.
+Selecionar o nome deve produzir uma confirmação clara e preencher os demais campos sem esforço. As alternativas devem responder com estados visuais discretos, e o progresso deve ser atualizado conforme o estudante avança, sem interromper a leitura.
 
 ### Animation
-
-As entradas usam deslocamento curto e opacidade, com duração entre 180 e 260 ms, como uma página que assenta no caderno. Os pontos da régua evolutiva recebem um pulso único quando uma aula é concluída. No simulador, apenas os elementos alterados devem se mover. O botão de envio usa uma compressão de 0,97 no clique. Todos os movimentos não essenciais ficam desativados para `prefers-reduced-motion`.
+As questões entram com uma transição curta de opacidade e deslocamento vertical mínimo, com atraso de 40 ms entre cartões. O preenchimento automático do cabeçalho usa uma transição de cor e brilho suave de até 220 ms. Hover e foco devem alterar apenas borda, sombra e transformações leves. Todos os movimentos não essenciais devem ser desativados para `prefers-reduced-motion`.
 
 ### Typography System
-
-Usar **Fraunces** para títulos, números de aula e chamadas editoriais; usar **IBM Plex Sans** para corpo, tabelas, opções de resposta e instruções. Títulos grandes com peso 650–750, corpo entre 16 e 18 px em desktop, rótulos em 11–12 px com espaçamento de letras e caixa alta. O texto deve ter linhas curtas e hierarquia explícita, sem usar Inter.
+Títulos usam **DM Serif Display** para evocar livros de história natural; corpo, campos e alternativas usam **Manrope**, com pesos 400, 500, 600 e 700. O título principal deve ser grande e compacto; os enunciados ficam entre 18 e 20 px em desktop; legendas usam caixa alta espaçada e tamanho pequeno.
 
 ### Brand Essence
-
-**Posicionamento:** uma atividade de Ciências para estudantes do 9.º ano que transforma evidências evolutivas em decisões interpretativas, ligando o vídeo às quatro primeiras aulas do 3.º bimestre.
-
-**Personalidade:** investigativa, rigorosa, encorajadora.
+Uma atividade digital de Ciências para estudantes do 9º Ano A que transforma revisão de evolução em uma investigação visual guiada por evidências. Personalidade: curiosa, cuidadosa, exploratória.
 
 ### Brand Voice
+Os enunciados devem convidar à observação e à justificativa, com linguagem clara e contextualizada. CTAs devem ser diretos e acolhedores, sem frases genéricas.
 
-As manchetes devem convidar a observar e justificar, não apenas a acertar. Os CTAs devem ser verbos de investigação; o microcopy deve reconhecer o esforço e indicar o próximo passo.
+Exemplo de headline: **Leia as evidências. Construa sua explicação.**
 
-**Exemplo de linha 1:** “Toda adaptação deixa uma pista. O que este conjunto de dados permite afirmar?”
-
-**Exemplo de linha 2:** “Regista a tua hipótese e volta à evidência antes de concluir.”
+Exemplo de microcopy: **Escolha seu nome para abrir o registro da turma.**
 
 ### Wordmark & Logo
-
-O símbolo é uma folha de samambaia construída a partir de quatro pequenos nós ligados por uma linha evolutiva. O nó inferior é um ponto de observação; os três superiores abrem-se como ramos divergentes. O wordmark usa “EVO / CAMPO” em Fraunces com uma barra vertical verde entre as palavras; a marca gráfica sem texto será usada no cabeçalho e no favicon.
+O símbolo é uma espiral de crescimento formada por três folhas-fóssil sobrepostas, atravessadas por uma linha de catalogação. O símbolo aparece no cabeçalho e no favicon, sem depender do nome da escola para ser reconhecido.
 
 ### Signature Brand Color
-
-**Verde clorofila — `#177E69`**. É a cor proprietária da experiência: representa vida em transformação e orienta os estados de progresso, sem substituir o azul-petróleo usado para evidências.
-
-## Decisões de implementação
-
-O conteúdo será implementado como uma página React responsiva, com componentes semânticos, SVGs determinísticos para os gráficos, cladograma, linha do tempo e infográficos, além de um simulador simples de seleção natural. O vídeo fornecido será apresentado na própria atividade. A interface não exporá a lista de estudantes no código; o aluno preencherá a sua identificação no início e a submissão enviará os dados para o endpoint configurável de registo.
+**Verde fóssil — #176B5B**, uma cor própria que conecta vida, arquivo e investigação científica.
 
 ## Style Decisions
-
-- Cada bloco de investigação deve apresentar o objeto de evidência antes das opções de resposta.
-- As opções são compactadas em escolhas de campo de nota no desktop e voltam a uma coluna no telemóvel.
-- A marca EVO / CAMPO e o símbolo de samambaia aparecem no cabeçalho, nos separadores das aulas e no fecho da atividade, usando `#177E69` como cor de identidade.
-
-## Fontes pedagógicas utilizadas
-
-- Guia do Currículo Priorizado — Ciências, Ensino Fundamental Anos Finais, arquivo fornecido pelo utilizador.
-- Vídeo fornecido pelo utilizador: “Teorias Evolucionistas — Entenda as Bases da Evolução”.
+- A interface deve ser predominantemente clara, com textura visual suave e contraste alto.
+- A ilustração científica será usada como apoio ao raciocínio, nunca como decoração sem função.
+- O cabeçalho deve manter a identificação institucional visível e a seleção do aluno em primeiro plano.
