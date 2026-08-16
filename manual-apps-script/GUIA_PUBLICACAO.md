@@ -1,39 +1,43 @@
 # Publicação do endpoint de respostas
 
-Este pacote cria um endpoint para registrar as respostas da atividade na aba **`9ºAno A (3ºBimestre)`** da planilha. O script calcula os acertos e a nota; em cada coluna Q1–Q12, pinta uma resposta correta de azul e uma incorreta de vermelho.
+Este pacote contém um endpoint completo para registrar a atividade do 9º Ano A na planilha Google Sheets. A implementação usa as 12 questões da atividade publicada e cria três abas: `Respostas`, `Aprendizagens` e `Dashboard`.
 
-> O código usa o ID da planilha já configurado. Não altere `SPREADSHEET_ID`, `SHEET_NAME` ou o gabarito, a menos que a atividade também seja alterada.
+## O que o script faz
 
-## 1. Criar o projeto ligado à planilha
+Ao receber o JSON enviado pelo botão **enviar respostas**, o script registra a identificação do aluno, as 12 respostas, o gabarito, o status de cada questão, a nota, o percentual e as aprendizagens atingidas ou não atingidas.
 
-Abra a planilha de respostas com a sua conta Google e aceda a **Extensões → Apps Script**. Elimine o conteúdo inicial do ficheiro `Code.gs` e cole integralmente o conteúdo do ficheiro `Code.gs` deste pacote.
+As respostas corretas são destacadas em azul claro; as incorretas, em vermelho claro; e as não respondidas permanecem brancas. A aba `Aprendizagens` mantém o código, a aprendizagem essencial e a alternativa correta de cada questão.
 
-No painel de definições do projeto, habilite a visualização do ficheiro de manifesto `appsscript.json`. Substitua o seu conteúdo pelo manifesto deste pacote e guarde todos os ficheiros.
+A aba `Dashboard` possui uma lista suspensa em `B2`. Ao selecionar um aluno, ela exibe nome, RA, série, acertos, nota, percentual, o resultado questão por questão e as aprendizagens atingidas e não atingidas.
 
-## 2. Publicar como Aplicação Web
+## Configuração
 
-No canto superior direito do Apps Script, escolha **Implantar → Nova implantação**. Selecione o tipo **Aplicação Web** e use uma descrição, por exemplo, `Registro de respostas — 9º Ano A`.
+Abra a planilha com a sua conta Google e acesse **Extensões → Apps Script**. Apague o conteúdo inicial de `Code.gs` e cole integralmente o conteúdo de `manual-apps-script/Code.gs`.
 
-Defina **Executar como** a sua própria conta, pois é ela que possui permissão de escrita na planilha. Em **Quem tem acesso**, escolha a opção mais ampla que a política da sua escola permitir para os alunos acessarem a atividade. Para um site estático sem login, a opção equivalente a **Qualquer pessoa** é a necessária; se ela não estiver disponível, solicite à administração da escola uma alternativa autorizada.
+O ID da planilha já está configurado no código como `1CcoSFYXaP-x7pHe7uyyodSeD5Xa4sSy173egGAAZsno`. Se o script for usado em outra planilha, altere somente `CONFIG.spreadsheetId`.
 
-Clique em **Implantar** e conclua a autorização pedida pelo Google. Copie o URL gerado que termina em **`/exec`**. Não use o URL que termina em `/dev`.
+Salve o projeto e execute manualmente a função `setupWorkbook()` uma única vez. Autorize o acesso solicitado pelo Google. Essa função prepara os cabeçalhos, os filtros, a formatação, a aba de aprendizagens e o dashboard.
 
-## 3. Enviar o URL para configuração da atividade
+## Implantação como aplicação web
 
-Envie o URL `/exec` nesta conversa. Ele será configurado como `VITE_SHEETS_ENDPOINT` na atividade. A cada envio final de aluno, a página fará um `POST` JSON para o endpoint e uma nova linha será escrita na planilha.
+No Apps Script, escolha **Implantar → Nova implantação**. Selecione **Aplicação Web**. Em **Executar como**, use a sua conta proprietária da planilha. Em **Quem tem acesso**, selecione a opção permitida pela política da escola que possibilite aos alunos acessarem o formulário sem autenticação. Para uma página pública sem login, normalmente é necessário permitir acesso anônimo.
 
-## 4. Verificar o resultado
+Conclua a autorização e copie o endereço que termina em `/exec`. Não use o endereço `/dev`.
 
-Após a configuração da atividade, realize um envio de teste com dados fictícios. A aba deve receber Data/Hora, identificação, Q1–Q12, Acertos, Nota, Situação e Feedback. As alternativas corretas devem ficar azuis (`#b8dcf0`) e as incorretas vermelhas (`#ffd5d0`).
+A atividade do repositório já está preparada para enviar um `POST` em JSON. Se quiser substituir o endpoint configurado no front-end, defina `VITE_SHEETS_ENDPOINT` no ambiente de compilação ou ajuste o valor público em `client/src/lib/submission.ts`.
 
-## Privacidade
+## Teste recomendado
 
-Não publique a lista de alunos, RA, dígitos ou e-mails institucionais num repositório público. O endpoint recebe apenas os dados que a página enviar. A versão pública da atividade deve usar identificação inserida pelo aluno ou uma fonte autenticada, em vez de incorporar a lista da turma no código.
+Antes de enviar o link aos alunos, abra a atividade, selecione um aluno de teste e envie uma resposta de teste. Verifique se uma nova linha aparece em `Respostas`, se as cores foram aplicadas, se a aba `Dashboard` mostra o aluno e se o filtro em `B2` exibe as 12 questões.
+
+## Observações de segurança e privacidade
+
+Como o repositório é público, evite colocar senhas, tokens ou dados pessoais desnecessários no código. O endpoint de Apps Script deve permanecer protegido pelas permissões da conta Google e pela política da escola. A planilha deve ser compartilhada apenas com as pessoas autorizadas.
 
 ## Referências
 
-[1] [Apps Script: publicar uma aplicação Web](https://developers.google.com/apps-script/guides/web)
+[1] [Apps Script — Aplicações Web](https://developers.google.com/apps-script/guides/web)
 
-[2] [Apps Script: `ContentService`](https://developers.google.com/apps-script/reference/content/content-service)
+[2] [Apps Script — ContentService](https://developers.google.com/apps-script/reference/content/content-service)
 
-[3] [Apps Script: `SpreadsheetApp`](https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app)
+[3] [Apps Script — SpreadsheetApp](https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app)
