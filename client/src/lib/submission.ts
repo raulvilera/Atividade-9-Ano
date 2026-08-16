@@ -15,6 +15,7 @@ export type SubmissionPayload = {
   essays: Record<string, string>;
 };
 
+// Endpoint publicado da Aplicação Web do Google Apps Script para esta atividade.
 const PUBLIC_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbx9ZbrXBzWFVlKjfM3e-tKHYsSOINLTwcYGmHSLAYRUFcay4ouheegjSMFwpxkMM_6S/exec";
 const endpoint = (import.meta.env.VITE_SHEETS_ENDPOINT as string | undefined)?.trim() || PUBLIC_SHEETS_ENDPOINT;
 
