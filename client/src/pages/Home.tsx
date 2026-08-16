@@ -2,7 +2,7 @@
  * Direção visual: Arquivo da Biodiversidade — natural-history editorial, marfim, verde fóssil,
  * terracota e azul-petróleo; layout assimétrico, evidências visuais e microinterações discretas.
  */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, ClipboardList, Mail, Search, Send, Sparkles } from "lucide-react";
 import { submitAssessment } from "@/lib/submission";
 
@@ -74,9 +74,17 @@ export default function Home() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [essays, setEssays] = useState<Record<number, string>>({});
   const [saveState, setSaveState] = useState<{ type: "idle" | "saving" | "saved" | "local" | "error"; message: string }>({ type: "idle", message: "" });
+  const [zoomedImage, setZoomedImage] = useState<{ src: string; alt: string } | null>(null);
   const selected = useMemo(() => students.find((student) => student.name === studentName), [studentName]);
   const answered = Object.keys(answers).length + Object.values(essays).filter(Boolean).length;
   const progress = Math.round((answered / questions.length) * 100);
+
+  useEffect(() => {
+    if (!zoomedImage) return;
+    const handleKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") setZoomedImage(null); };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [zoomedImage]);
 
   async function handleSubmit() {
     if (!selected) {
@@ -132,9 +140,10 @@ export default function Home() {
     <section className="activity-intro"><div><span className="eyebrow">ATIVIDADE DE CIÊNCIAS (3º BIMESTRE)</span><h2>Evolução e diversidade das espécies</h2></div><div className="progress-box"><div><span>PROGRESSO</span><strong>{progress}%</strong></div><div className="progress-track"><i style={{ width: `${progress}%` }} /></div><small>{answered} de {questions.length} registros respondidos</small></div></section>
 
     <div className="activity-layout"><aside className="side-index"><div className="side-sticky"><div className="catalog-spine"><span>REGISTRO</span><b>9A / 03</b></div><span className="eyebrow">ÍNDICE DE EVIDÊNCIAS</span><p>Observe a imagem antes de responder. Nas questões dissertativas, escreva com suas próprias palavras e use conceitos científicos.</p><div className="index-list">{questions.map((question) => <a key={question.number} href={`#questao-${question.number}`} className={answers[question.number] !== undefined || essays[question.number] ? "done" : ""}><b>{String(question.number).padStart(2, "0")}</b><span>{question.type}</span></a>)}</div></div></aside>
-      <section className="questions" aria-label="Questões da atividade">{questions.map((question, index) => <article className={`question-card ${index % 2 ? "reverse" : ""}`} id={`questao-${question.number}`} key={question.number}><div className="question-meta"><span>QUESTÃO {String(question.number).padStart(2, "0")}</span><span>{question.type}</span></div><h3>{question.prompt}</h3><figure><img src={question.image} alt={`Ilustração científica relacionada à questão ${question.number}`} /><figcaption><span>PRANCHA {String(question.number).padStart(2, "0")}</span><i>COLEÇÃO EVOLUÇÃO / 2026</i><em>Evidência visual para leitura e interpretação</em></figcaption></figure>{question.options ? <div className="options">{question.options.map((option, optionIndex) => <label className={`option ${answers[question.number] === optionIndex ? "selected" : ""}`} key={option}><input type="radio" name={`question-${question.number}`} checked={answers[question.number] === optionIndex} onChange={() => setAnswers((current) => ({ ...current, [question.number]: optionIndex }))} /><span className="option-letter">{String.fromCharCode(65 + optionIndex)}</span><span>{option}</span></label>)}</div> : <textarea value={essays[question.number] || ""} onChange={(event) => setEssays((current) => ({ ...current, [question.number]: event.target.value }))} placeholder="Registre sua explicação aqui..." rows={6} aria-label={`Resposta da questão ${question.number}`} />}</article>)}</section>
+      <section className="questions" aria-label="Questões da atividade">{questions.map((question, index) => <article className={`question-card ${index % 2 ? "reverse" : ""}`} id={`questao-${question.number}`} key={question.number}><div className="question-meta"><span>QUESTÃO {String(question.number).padStart(2, "0")}</span><span>{question.type}</span></div><h3>{question.prompt}</h3><figure><button type="button" className="image-zoom-trigger" onClick={() => setZoomedImage({ src: question.image, alt: `Ilustração científica relacionada à questão ${question.number}` })} aria-label={`Ampliar imagem da questão ${question.number}`}><img src={question.image} alt={`Ilustração científica relacionada à questão ${question.number}`} /><span className="zoom-hint">Clique para ampliar</span></button><figcaption><span>PRANCHA {String(question.number).padStart(2, "0")}</span><i>COLEÇÃO EVOLUÇÃO / 2026</i><em>Evidência visual para leitura e interpretação</em></figcaption></figure>{question.options ? <div className="options">{question.options.map((option, optionIndex) => <label className={`option ${answers[question.number] === optionIndex ? "selected" : ""}`} key={option}><input type="radio" name={`question-${question.number}`} checked={answers[question.number] === optionIndex} onChange={() => setAnswers((current) => ({ ...current, [question.number]: optionIndex }))} /><span className="option-letter">{String.fromCharCode(65 + optionIndex)}</span><span>{option}</span></label>)}</div> : <textarea value={essays[question.number] || ""} onChange={(event) => setEssays((current) => ({ ...current, [question.number]: event.target.value }))} placeholder="Registre sua explicação aqui..." rows={6} aria-label={`Resposta da questão ${question.number}`} />}</article>)}</section>
     </div>
 
     <footer className="footer-note"><div><Sparkles size={18} /><span><strong>Releia antes de enviar.</strong> Uma boa resposta apresenta evidência, conceito e justificativa.</span>{saveState.message && <small className={`save-message ${saveState.type}`}>{saveState.message}</small>}</div><div className="footer-actions"><button className="submit-button" type="button" onClick={handleSubmit} disabled={saveState.type === "saving"}>{saveState.type === "saving" ? "Enviando..." : "Enviar respostas"} <Send size={17} /></button><button className="print-button" type="button" onClick={() => window.print()}><ClipboardList size={17} /> Imprimir / salvar em PDF</button></div></footer>
+    {zoomedImage && <div className="image-lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada" onClick={() => setZoomedImage(null)}><div className="lightbox-panel" onClick={(event) => event.stopPropagation()}><button className="lightbox-close" type="button" onClick={() => setZoomedImage(null)} aria-label="Fechar imagem ampliada">×</button><img src={zoomedImage.src} alt={zoomedImage.alt} /></div></div>}
   </main>;
 }
