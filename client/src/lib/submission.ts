@@ -16,7 +16,7 @@ export type SubmissionPayload = {
 };
 
 // Endpoint publicado da Aplicação Web do Google Apps Script para esta atividade.
-const PUBLIC_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwmtHT6y_Pi3-AhRHpqvsDwaIKwN3cTJNGYUkjogG9u7963lalDg7G_-fYct1C446Z0/exec";
+const PUBLIC_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbz0Tg4zdZRdefH5CLCsCbqlgCY2VGGVNoWrolBveslUFpMy1_yo4kHBN4tom17o295m/exec";
 const endpoint = (import.meta.env.VITE_SHEETS_ENDPOINT as string | undefined)?.trim() || PUBLIC_SHEETS_ENDPOINT;
 
 export async function submitAssessment(payload: SubmissionPayload) {
