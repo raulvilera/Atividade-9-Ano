@@ -3,7 +3,8 @@
  * terracota e azul-petróleo; layout assimétrico, evidências visuais e microinterações discretas.
  */
 import { useMemo, useState } from "react";
-import { CheckCircle2, ClipboardList, Mail, NotebookPen, Search, Sparkles } from "lucide-react";
+import { CheckCircle2, ClipboardList, Mail, Search, Send, Sparkles } from "lucide-react";
+import { submitAssessment } from "@/lib/submission";
 
 const students = [
   ["ALICE CARVALHO","000114160176","X","0000114160176XSP@al.educacao.sp.gov.br"],
@@ -52,16 +53,16 @@ const students = [
 ].map(([name, ra, dig, email]) => ({ name, ra, dig, email }));
 
 const questions = [
-  { number: 1, type: "Múltipla escolha", image: "/manus-storage/q01-especiacao_f32230cb.png", prompt: "Em uma ilha, uma população ancestral de aves foi separada por uma barreira geográfica. Depois de muitas gerações, os dois grupos passaram a apresentar diferenças no formato do bico e não conseguem mais produzir descendentes férteis entre si. Qual processo está melhor representado?", options: ["Mutação dirigida pela necessidade do ambiente.", "Especiação associada ao isolamento reprodutivo.", "Reprodução assexuada de uma única espécie.", "Evolução convergente entre organismos sem ancestral comum."], answer: 1 },
-  { number: 2, type: "Múltipla escolha", image: "/manus-storage/q02-ancestralidade_d5c777c5.png", prompt: "Ao comparar os membros anteriores de seres humanos, morcegos, baleias e gatos, uma equipe percebeu que os ossos possuem organização básica semelhante, embora desempenhem funções diferentes. Essa evidência sustenta principalmente a ideia de que esses grupos", options: ["surgiram exatamente no mesmo ambiente.", "possuem um ancestral comum em sua história evolutiva.", "têm o mesmo modo de vida atualmente.", "foram produzidos sem modificações ao longo do tempo."], answer: 1 },
-  { number: 3, type: "Múltipla escolha", image: "/manus-storage/q03-fossil-evidence_862d111d.png", prompt: "Em uma escavação, fósseis de organismos marinhos aparecem em camadas mais profundas, enquanto formas com características associadas à vida terrestre aparecem em camadas superiores. Considerando a formação das rochas sedimentares, a interpretação mais adequada é que", options: ["as camadas superiores são sempre mais antigas.", "os fósseis não permitem comparar diferentes momentos da história da vida.", "a sequência das camadas pode registrar mudanças nos organismos ao longo do tempo.", "os organismos das camadas inferiores necessariamente viveram depois dos demais."], answer: 2 },
-  { number: 4, type: "Múltipla escolha", image: "/manus-storage/q04-convergente-divergente_873d3aa2.png", prompt: "Tubarões e golfinhos apresentam corpos hidrodinâmicos, embora pertençam a grupos evolutivamente distantes. Já o braço humano, a asa do morcego e a nadadeira da baleia têm a mesma base óssea, mas funções diferentes. A primeira situação e a segunda correspondem, respectivamente, a", options: ["evolução divergente e seleção artificial.", "evolução convergente e evolução divergente.", "ancestralidade recente e mutação dirigida.", "isolamento geográfico e evolução convergente."], answer: 1 },
-  { number: 5, type: "Múltipla escolha", image: "/manus-storage/q05-selecao-natural_0c649de2.png", prompt: "Em uma população de besouros havia variação natural na cor do corpo. Após a chegada de aves predadoras, os indivíduos mais visíveis foram capturados com maior frequência, e os mais escuros tornaram-se mais comuns nas gerações seguintes. Esse caso ilustra", options: ["a seleção natural atuando sobre uma variação herdável.", "a transformação intencional dos besouros durante a vida.", "a ausência de diferenças entre os indivíduos da população.", "a produção de uma nova espécie em apenas uma geração."], answer: 0 },
-  { number: 6, type: "Múltipla escolha", image: "/manus-storage/q06-isolamento-reprodutivo_4578df60.png", prompt: "Duas populações de sapos vivem em áreas próximas, mas os machos de cada grupo emitem cantos de acasalamento diferentes. As fêmeas respondem apenas ao canto do próprio grupo. Se essa diferença impedir o cruzamento entre as populações, ela poderá favorecer", options: ["o isolamento reprodutivo e a formação de novas espécies.", "a mistura obrigatória dos genes dos dois grupos.", "a redução da biodiversidade por ausência de variação.", "a evolução convergente dos cantos em uma única população."], answer: 0 },
-  { number: 7, type: "Múltipla escolha", image: "/manus-storage/q07-biodiversidade-tempo_c908f23f.png", prompt: "O registro fóssil revela que diferentes grupos de seres vivos surgiram, diversificaram-se e desapareceram em diferentes momentos da história da Terra. Esse registro ajuda a compreender que a biodiversidade", options: ["é fixa e não sofre alterações ao longo do tempo.", "resulta de uma história evolutiva marcada por mudanças e ramificações.", "depende apenas do tamanho dos organismos.", "aumenta sempre de forma contínua, sem extinções."], answer: 1 },
-  { number: 8, type: "Dissertativa", image: "/manus-storage/q08-fossil-transicao_bfd41f4a.png", prompt: "Observe a prancha de evidências. Explique como um fóssil com características intermediárias pode contribuir para a compreensão da evolução de um grupo de organismos. Em sua resposta, relacione estrutura, ancestralidade e mudança ao longo do tempo." },
-  { number: 9, type: "Dissertativa", image: "/manus-storage/q09-arvore-filogenetica_1d441f10.png", prompt: "Analise a árvore filogenética representada. Explique o que significa um ponto de ramificação e como ele pode ser utilizado para discutir relações de ancestralidade comum entre os grupos apresentados." },
-  { number: 10, type: "Dissertativa", image: "/manus-storage/q10-conservacao-biodiversidade_eb08d78e.png", prompt: "A imagem apresenta uma área preservada e outra fragmentada. Escreva duas ações humanas que podem contribuir para conservar a biodiversidade e explique por que a conservação dos habitats é importante para a continuidade dos processos evolutivos." }
+  { number: 1, type: "Múltipla escolha", image: "/Atividade-9-Ano/assets/q01-especiacao.webp", prompt: "Em uma ilha, uma população ancestral de aves foi separada por uma barreira geográfica. Depois de muitas gerações, os dois grupos passaram a apresentar diferenças no formato do bico e não conseguem mais produzir descendentes férteis entre si. Qual processo está melhor representado?", options: ["Mutação dirigida pela necessidade do ambiente.", "Especiação associada ao isolamento reprodutivo.", "Reprodução assexuada de uma única espécie.", "Evolução convergente entre organismos sem ancestral comum."], answer: 1 },
+  { number: 2, type: "Múltipla escolha", image: "/Atividade-9-Ano/assets/q02-ancestralidade.webp", prompt: "Ao comparar os membros anteriores de seres humanos, morcegos, baleias e gatos, uma equipe percebeu que os ossos possuem organização básica semelhante, embora desempenhem funções diferentes. Essa evidência sustenta principalmente a ideia de que esses grupos", options: ["surgiram exatamente no mesmo ambiente.", "possuem um ancestral comum em sua história evolutiva.", "têm o mesmo modo de vida atualmente.", "foram produzidos sem modificações ao longo do tempo."], answer: 1 },
+  { number: 3, type: "Múltipla escolha", image: "/Atividade-9-Ano/assets/q03-fossil-evidence.webp", prompt: "Em uma escavação, fósseis de organismos marinhos aparecem em camadas mais profundas, enquanto formas com características associadas à vida terrestre aparecem em camadas superiores. Considerando a formação das rochas sedimentares, a interpretação mais adequada é que", options: ["as camadas superiores são sempre mais antigas.", "os fósseis não permitem comparar diferentes momentos da história da vida.", "a sequência das camadas pode registrar mudanças nos organismos ao longo do tempo.", "os organismos das camadas inferiores necessariamente viveram depois dos demais."], answer: 2 },
+  { number: 4, type: "Múltipla escolha", image: "/Atividade-9-Ano/assets/q04-convergente-divergente.webp", prompt: "Tubarões e golfinhos apresentam corpos hidrodinâmicos, embora pertençam a grupos evolutivamente distantes. Já o braço humano, a asa do morcego e a nadadeira da baleia têm a mesma base óssea, mas funções diferentes. A primeira situação e a segunda correspondem, respectivamente, a", options: ["evolução divergente e seleção artificial.", "evolução convergente e evolução divergente.", "ancestralidade recente e mutação dirigida.", "isolamento geográfico e evolução convergente."], answer: 1 },
+  { number: 5, type: "Múltipla escolha", image: "/Atividade-9-Ano/assets/q05-selecao-natural.webp", prompt: "Em uma população de besouros havia variação natural na cor do corpo. Após a chegada de aves predadoras, os indivíduos mais visíveis foram capturados com maior frequência, e os mais escuros tornaram-se mais comuns nas gerações seguintes. Esse caso ilustra", options: ["a seleção natural atuando sobre uma variação herdável.", "a transformação intencional dos besouros durante a vida.", "a ausência de diferenças entre os indivíduos da população.", "a produção de uma nova espécie em apenas uma geração."], answer: 0 },
+  { number: 6, type: "Múltipla escolha", image: "/Atividade-9-Ano/assets/q06-isolamento-reprodutivo.webp", prompt: "Duas populações de sapos vivem em áreas próximas, mas os machos de cada grupo emitem cantos de acasalamento diferentes. As fêmeas respondem apenas ao canto do próprio grupo. Se essa diferença impedir o cruzamento entre as populações, ela poderá favorecer", options: ["o isolamento reprodutivo e a formação de novas espécies.", "a mistura obrigatória dos genes dos dois grupos.", "a redução da biodiversidade por ausência de variação.", "a evolução convergente dos cantos em uma única população."], answer: 0 },
+  { number: 7, type: "Múltipla escolha", image: "/Atividade-9-Ano/assets/q07-biodiversidade-tempo.webp", prompt: "O registro fóssil revela que diferentes grupos de seres vivos surgiram, diversificaram-se e desapareceram em diferentes momentos da história da Terra. Esse registro ajuda a compreender que a biodiversidade", options: ["é fixa e não sofre alterações ao longo do tempo.", "resulta de uma história evolutiva marcada por mudanças e ramificações.", "depende apenas do tamanho dos organismos.", "aumenta sempre de forma contínua, sem extinções."], answer: 1 },
+  { number: 8, type: "Dissertativa", image: "/Atividade-9-Ano/assets/q08-fossil-transicao.webp", prompt: "Observe a prancha de evidências. Explique como um fóssil com características intermediárias pode contribuir para a compreensão da evolução de um grupo de organismos. Em sua resposta, relacione estrutura, ancestralidade e mudança ao longo do tempo." },
+  { number: 9, type: "Dissertativa", image: "/Atividade-9-Ano/assets/q09-arvore-filogenetica.webp", prompt: "Analise a árvore filogenética representada. Explique o que significa um ponto de ramificação e como ele pode ser utilizado para discutir relações de ancestralidade comum entre os grupos apresentados." },
+  { number: 10, type: "Dissertativa", image: "/Atividade-9-Ano/assets/q10-conservacao-biodiversidade.webp", prompt: "A imagem apresenta uma área preservada e outra fragmentada. Escreva duas ações humanas que podem contribuir para conservar a biodiversidade e explique por que a conservação dos habitats é importante para a continuidade dos processos evolutivos." }
 ];
 
 function Field({ label, value, icon }: { label: string; value: string; icon?: React.ReactNode }) {
@@ -72,16 +73,42 @@ export default function Home() {
   const [studentName, setStudentName] = useState("");
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [essays, setEssays] = useState<Record<number, string>>({});
+  const [saveState, setSaveState] = useState<{ type: "idle" | "saving" | "saved" | "local" | "error"; message: string }>({ type: "idle", message: "" });
   const selected = useMemo(() => students.find((student) => student.name === studentName), [studentName]);
   const answered = Object.keys(answers).length + Object.values(essays).filter(Boolean).length;
   const progress = Math.round((answered / questions.length) * 100);
+
+  async function handleSubmit() {
+    if (!selected) {
+      setSaveState({ type: "error", message: "Selecione seu nome antes de enviar." });
+      document.querySelector(".student-panel")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    if (answered < questions.length) {
+      setSaveState({ type: "error", message: `Responda todas as ${questions.length} questões antes de enviar.` });
+      return;
+    }
+    setSaveState({ type: "saving", message: "Enviando suas respostas..." });
+    const answerPayload = Object.fromEntries(Object.entries(answers).map(([number, option]) => [`q${number}`, String.fromCharCode(65 + option)]));
+    const score = questions.filter((question) => question.options && answers[question.number] === question.answer).length;
+    const result = await submitAssessment({
+      submittedAt: new Date().toISOString(),
+      student: { nome: selected.name, numero: "", serie: "9º Ano A", email: selected.email, ra: selected.ra, digito: selected.dig, situacao: "Atividade enviada" },
+      answers: answerPayload,
+      essays: Object.fromEntries(Object.entries(essays).map(([number, text]) => [`q${number}`, text])),
+      score,
+      total: 7,
+    });
+    setSaveState({ type: result.mode === "online" ? "saved" : "local", message: result.message });
+    document.querySelector(".footer-note")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
   return <main className="page-shell">
     <header className="hero">
       <div className="hero-topline"><span className="eyebrow">REGISTRO DE APRENDIZAGEM · 2026</span><span className="class-chip">9º ANO A</span></div>
       <div className="hero-grid">
         <div>
-          <div className="brand-lockup"><img src="/manus-storage/arquivo-biodiversidade-logo_f63bef01.png" alt="Símbolo do Arquivo da Biodiversidade" /><span>CIÊNCIAS<br /><small>arquivo da biodiversidade</small></span></div>
+          <div className="brand-lockup"><img src="/Atividade-9-Ano/assets/arquivo-biodiversidade-logo.webp" alt="Símbolo do Arquivo da Biodiversidade" /><span>CIÊNCIAS<br /><small>arquivo da biodiversidade</small></span></div>
           <h1>Leia as evidências.<br /><em>Construa sua explicação.</em></h1>
           <p className="hero-copy">Uma atividade visual sobre evolução e diversidade das espécies, organizada a partir das aulas 1 a 4 do 3º bimestre.</p>
         </div>
@@ -108,6 +135,6 @@ export default function Home() {
       <section className="questions" aria-label="Questões da atividade">{questions.map((question, index) => <article className={`question-card ${index % 2 ? "reverse" : ""}`} id={`questao-${question.number}`} key={question.number}><div className="question-meta"><span>QUESTÃO {String(question.number).padStart(2, "0")}</span><span>{question.type}</span></div><h3>{question.prompt}</h3><figure><img src={question.image} alt={`Ilustração científica relacionada à questão ${question.number}`} /><figcaption><span>PRANCHA {String(question.number).padStart(2, "0")}</span><i>COLEÇÃO EVOLUÇÃO / 2026</i><em>Evidência visual para leitura e interpretação</em></figcaption></figure>{question.options ? <div className="options">{question.options.map((option, optionIndex) => <label className={`option ${answers[question.number] === optionIndex ? "selected" : ""}`} key={option}><input type="radio" name={`question-${question.number}`} checked={answers[question.number] === optionIndex} onChange={() => setAnswers((current) => ({ ...current, [question.number]: optionIndex }))} /><span className="option-letter">{String.fromCharCode(65 + optionIndex)}</span><span>{option}</span></label>)}</div> : <textarea value={essays[question.number] || ""} onChange={(event) => setEssays((current) => ({ ...current, [question.number]: event.target.value }))} placeholder="Registre sua explicação aqui..." rows={6} aria-label={`Resposta da questão ${question.number}`} />}</article>)}</section>
     </div>
 
-    <footer className="footer-note"><div><Sparkles size={18} /><span><strong>Releia antes de enviar.</strong> Uma boa resposta apresenta evidência, conceito e justificativa.</span></div><button type="button" onClick={() => window.print()}><ClipboardList size={17} /> Imprimir / salvar em PDF</button></footer>
+    <footer className="footer-note"><div><Sparkles size={18} /><span><strong>Releia antes de enviar.</strong> Uma boa resposta apresenta evidência, conceito e justificativa.</span>{saveState.message && <small className={`save-message ${saveState.type}`}>{saveState.message}</small>}</div><div className="footer-actions"><button className="submit-button" type="button" onClick={handleSubmit} disabled={saveState.type === "saving"}>{saveState.type === "saving" ? "Enviando..." : "Enviar respostas"} <Send size={17} /></button><button className="print-button" type="button" onClick={() => window.print()}><ClipboardList size={17} /> Imprimir / salvar em PDF</button></div></footer>
   </main>;
 }
