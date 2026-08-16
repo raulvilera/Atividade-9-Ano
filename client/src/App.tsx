@@ -12,8 +12,8 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
+      {/* GitHub Pages publica o app em /Atividade-9-Ano/; o fallback deve abrir a atividade. */}
+      <Route component={Home} />
     </Switch>
   );
 }
